@@ -86,7 +86,6 @@ export default class ReportRecordsService {
             };
 
             const resultUpload = await upload(params);
-            console.timeEnd("Upload File");
 
             return {
                 statusCode: 200,
