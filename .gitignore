@@ -1,0 +1,13 @@
+node_modules
+.serverless
+package-lock.json
+.idea
+.idea/*
+./.idea
+.build/*
+.build
+.esbuild
+.esbuild/**
+.dynamodb
+.dynamodb/*
+.env
