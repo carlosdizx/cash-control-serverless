@@ -1,6 +1,12 @@
-find-all-users:
-  handler: ${self:custom.prefix_module, 'src/functions/users/'}create.handler
+register-user:
+  handler: ${self:custom.prefix_module, 'src/functions/users/'}register.handler
   events:
     - http:
         path: users
+        method: POST
+login-user:
+  handler: ${self:custom.prefix_module, 'src/functions/users/'}login.handler
+  events:
+    - http:
+        path: users/login
         method: POST

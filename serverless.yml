@@ -25,6 +25,8 @@ custom:
       - typeorm
       - moment
       - moment-timezone
+      - bcrypt
+      - jsonwebtoken
     watch:
       pattern: [ './index.ts', 'src/**/*.ts' ]
       ignore: [ '.serverless/**/*', '.build' ]
