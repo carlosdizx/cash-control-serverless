@@ -2,6 +2,7 @@ import "reflect-metadata";
 import {APIGatewayProxyHandler} from "aws-lambda";
 import responseObject from "../../utils/Response";
 import UsersAuthService from "../../services/users.auth.service";
+import User from "../../entities/User.entity";
 
 export const handler: APIGatewayProxyHandler = async (event, context) => {
     console.log(`HANDLER: Starting ${context.functionName}...`);
@@ -16,8 +17,9 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
         else if (password.trim() === "")
             return responseObject(400, { message: "Password is required" });
 
-        return await UsersAuthService.create(name, email, password
-        );
+        const {body} = await UsersAuthService.create(name, email, password);
+        const user: User = JSON.parse(body);
+        return responseObject(200, {message: `User created: ${user.email}`});
     }
     return responseObject(400, {message: "Body is required"});
 };
