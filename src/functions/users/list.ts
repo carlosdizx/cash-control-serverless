@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { APIGatewayProxyHandler } from "aws-lambda";
 import responseObject from "../../utils/Response";
 import {User} from "../../entities/User.entity";
