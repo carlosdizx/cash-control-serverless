@@ -1,21 +1,12 @@
 import User from "../entities/User.entity";
 import responseObject from "../utils/Response";
 import getConnect from "../utils/DatabaseConnection";
+import { generateToken } from '../utils/AuthUtils';
+import { encryptPassword, validatePassword } from '../utils/bcryptUtils';
 
 export default class UsersAuthService {
     public static create = async ({name, email, password}:{name: string, email: string, password: string}) => {
-        const datasource = await getConnect();
-        const userRepository = datasource.getRepository(User);
-        if(name && email && password && name.trim() !== "" && email.trim() !== "" && password.trim()){
-            const user = new User();
-            user.name = name;
-            user.email  = email;
-            user.password  = password;
-
-            await userRepository.save(user);
-
-            return responseObject(200, user);
-        }
-        return responseObject(400, {message: "Invalid data passed"})
+        const hashedPassword = await encryptPassword(password);
+        return responseObject(200, {password, hashedPassword})
     }
 }

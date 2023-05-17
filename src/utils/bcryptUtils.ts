@@ -8,3 +8,4 @@ const encryptPassword = async (password: string) =>
 const validatePassword = async (password: string, hashedPassword: string) =>
     await bcrypt.compare(password, hashedPassword);
 
+export {encryptPassword, validatePassword}
