@@ -5,7 +5,7 @@ import { encryptPassword, validatePassword } from '../utils/bcryptUtils';
 import UserDao from "../dao/User.dao";
 
 export default class UsersAuthService {
-    private static create = async (name: string, email: string, password: string) => {
+    public static create = async (name: string, email: string, password: string) => {
         const hashedPassword = await encryptPassword(password);
         try {
             const result = await UserDao.create(name, email, hashedPassword);
