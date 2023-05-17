@@ -2,7 +2,7 @@ import User from "../entities/User.entity";
 import responseObject from "../utils/Response";
 import getConnect from "../utils/DatabaseConnection";
 
-export default class UsersCrudService {
+export default class UsersAuthService {
     public static create = async ({name, email, password}:{name: string, email: string, password: string}) => {
         const datasource = await getConnect();
         const userRepository = datasource.getRepository(User);
