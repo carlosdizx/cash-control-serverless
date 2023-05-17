@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "esnext",
-    "module": "commonjs",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es6",
+    "module": "commonjs",
     "sourceMap": true,
     "allowJs": true,
     "outDir": "dist",
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["es6", "dom"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

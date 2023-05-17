@@ -7,7 +7,10 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
 
     if (event.queryStringParameters){
 
-        const user: User = new User(1);
+        const user: User = new User();
+        user.name = "Carlos Diaz";
+        user.email= "carlosbiche98@gmail.com";
+        user.password = "xd";
         return responseObject(200, user);
     }
     return responseObject(400, {message: "Query parameters are required"});
