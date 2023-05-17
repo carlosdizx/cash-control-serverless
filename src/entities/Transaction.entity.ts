@@ -7,13 +7,13 @@ export default class Transaction extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({name: "amount", type: "numeric"})
     amount: number;
 
-    @Column()
+    @Column({name: "date", type: "timestamp"})
     date: Date;
 
-    @Column()
+    @Column({name: "description", type: "varchar"})
     description: string;
 
     @ManyToOne(() => User, user => user.transactions)

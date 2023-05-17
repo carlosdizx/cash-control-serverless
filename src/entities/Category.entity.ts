@@ -6,7 +6,7 @@ export default class Category extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({name: "name", type: "varchar"})
     name: string;
 
     @OneToMany(() => Transaction, transaction => transaction.category)
