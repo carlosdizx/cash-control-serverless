@@ -7,8 +7,6 @@ export default class UserDao {
         const datasource = await getConnect();
         const repository = datasource.getRepository(User);
         const user = repository.create({ name, email, password });
-        const result = await repository.save(user);
-        console.log("User saved");
-        return result;
+        return await repository.save(user);
     }
 }
