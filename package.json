@@ -5,7 +5,6 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "lambda:dev": "rimraf .build && serverless offline start --stage dev",
-    "lambda:stage": "rimraf .build && serverless offline start --stage stage",
     "deploy:dev": "rimraf .serverless && serverless deploy --stage dev --verbose",
     "deploy:stage": "rimraf .serverless && serverless deploy --stage dev --verbose",
     "format": "prettier --write \"src/**/**/*.ts\" \"test/**/**/*.ts\""
@@ -14,7 +13,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "aws-sdk": "^2.1373.0",
+    "@aws-sdk/client-s3": "^3.332.0",
+    "aws-sdk": "^2.1377.0",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",

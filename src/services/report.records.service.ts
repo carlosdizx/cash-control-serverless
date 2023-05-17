@@ -83,11 +83,9 @@ export default class ReportRecordsService {
             const params = {
                 Key: `report-${moment().tz('America/Bogota').format('YYYY-MM-DD HH.mm.ss')}.xlsx`,
                 Body: buffer,
-                ContentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             };
 
             const resultUpload = await upload(params);
-            console.timeEnd("Upload File");
 
             return {
                 statusCode: 200,
