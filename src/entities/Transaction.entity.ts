@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, BaseEntity, Column, ManyToOne} from "typeorm"
 import User from "./User.entity";
+import Category from "./Category.entity";
 
 @Entity({name: "transactions"})
 export default class Transaction extends BaseEntity {
@@ -17,4 +18,8 @@ export default class Transaction extends BaseEntity {
 
     @ManyToOne(() => User, user => user.transactions)
     user: User;
+
+    @ManyToOne(() => Category, category => category.transactions)
+    category: Category;
+
 }

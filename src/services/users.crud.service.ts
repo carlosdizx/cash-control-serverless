@@ -1,4 +1,4 @@
-import {User} from "../entities/User.entity";
+import User from "../entities/User.entity";
 import responseObject from "../utils/Response";
 import getConnect from "../utils/DatabaseConnection";
 
