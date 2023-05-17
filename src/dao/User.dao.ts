@@ -9,4 +9,10 @@ export default class UserDao {
         const user = repository.create({ name, email, password });
         return await repository.save(user);
     }
+
+    public static findByEmail = async (email: string) => {
+        const datasource = await getConnect();
+        const repository = datasource.getRepository(User);
+        return await repository.findOne({ where: { email } });
+    }
 }
