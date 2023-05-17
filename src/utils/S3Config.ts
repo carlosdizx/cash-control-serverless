@@ -1,7 +1,9 @@
-import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import dotenv = require("dotenv");
 const Bucket = process.env.AWS_BUCKET_NAME;
 const region = process.env.AWS_BUCKET_REGION || "us-east-1" ;
 const s3Client = new S3Client({ region });
+dotenv.config();
 
 export const upload = async ({Key, Body}: {Key: string, Body: Buffer }) =>
 {
