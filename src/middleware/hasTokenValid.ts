@@ -1,4 +1,5 @@
 import responseObject from "../utils/Response";
+import {verifyToken} from "../utils/AuthUtils";
 const hasTokenValid = () => {
     return {
         before: async (handler) => {
@@ -8,7 +9,12 @@ const hasTokenValid = () => {
             const {Authorization} = headers;
             const token = Authorization && Authorization.split(" ")[1];
             if(token){
-
+                try {
+                    verifyToken(token);
+                }
+                catch (err) {
+                    return responseObject(409, {message: "Your token is invalid!"});
+                }
             }else
                 return responseObject(403, {message: "You are not allowed to access this!"});
         },

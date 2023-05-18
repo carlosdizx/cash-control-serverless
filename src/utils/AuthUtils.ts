@@ -1,6 +1,5 @@
-import jwt, {JwtPayload} from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv = require("dotenv");
-import User from "../entities/User.entity";
 
 dotenv.config();
 
