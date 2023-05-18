@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, BaseEntity, Column, OneToMany} from "typeorm"
 import Transaction from "./Transaction.entity";
+import {TypesUser} from "../Enums/typesUser";
 
 @Entity({name: "users"})
 export default class User extends BaseEntity {
@@ -17,4 +18,12 @@ export default class User extends BaseEntity {
 
     @OneToMany(() => Transaction, transaction => transaction.user)
     transactions: Transaction[];
+
+    @Column({
+        name: "type",
+        type: "enum",
+        enum: TypesUser,
+        default: TypesUser.USER
+    })
+    type: TypesUser;
 }
