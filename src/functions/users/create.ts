@@ -3,8 +3,10 @@ import {APIGatewayProxyHandler} from "aws-lambda";
 import responseObject from "../../utils/Response";
 import UsersAuthService from "../../services/users.auth.service";
 import User from "../../entities/User.entity";
+import middy from "@middy/core";
+import hasTokenValid from "../../middleware/hasTokenValid";
 
-export const handler: APIGatewayProxyHandler = async (event, context) => {
+const originalHandler: APIGatewayProxyHandler = async (event, context) => {
     console.log(`HANDLER: Starting ${context.functionName}...`);
 
     if (typeof event.body === "string"){
@@ -23,3 +25,8 @@ export const handler: APIGatewayProxyHandler = async (event, context) => {
     }
     return responseObject(400, {message: "Body is required"});
 };
+
+export const handler = middy(originalHandler)
+    .use(
+        hasTokenValid()
+    );
