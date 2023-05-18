@@ -5,6 +5,7 @@ import UsersAuthService from "../../services/users.auth.service";
 import User from "../../entities/User.entity";
 import middy from "@middy/core";
 import hasTokenValid from "../../middleware/hasTokenValid";
+import {TypesUser} from "../../Enums/typesUser";
 
 const originalHandler: APIGatewayProxyHandler = async (event, context) => {
     console.log(`HANDLER: Starting ${context.functionName}...`);
@@ -27,6 +28,4 @@ const originalHandler: APIGatewayProxyHandler = async (event, context) => {
 };
 
 export const handler = middy(originalHandler)
-    .use(
-        hasTokenValid()
-    );
+    .use(hasTokenValid([TypesUser.ADMIN, TypesUser.ENTERPRISE]));

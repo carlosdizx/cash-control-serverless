@@ -1,6 +1,7 @@
 import responseObject from "../utils/Response";
 import {verifyToken} from "../utils/AuthUtils";
-const hasTokenValid = () => {
+import {TypesUser} from "../Enums/typesUser";
+const hasTokenValid = (roles: TypesUser[]) => {
     return {
         before: async (handler) => {
             console.log('MIDDLEWARE: Starting hasTokenValid method');
@@ -10,7 +11,12 @@ const hasTokenValid = () => {
             const token = Authorization && Authorization.split(" ")[1];
             if(token){
                 try {
-                    verifyToken(token);
+                    const valid: any = verifyToken(token);
+                    if(roles.length > 0){
+                        const roleIsValid = roles.includes(valid.type);
+                        if(!roleIsValid)
+                            return responseObject(409, {message: "Your rol is not allowed to access this!"});
+                    }
                 }
                 catch (err) {
                     return responseObject(409, {message: "Your token is invalid!"});
