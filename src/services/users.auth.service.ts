@@ -1,12 +1,12 @@
 import User from "../entities/User.entity";
 import responseObject from "../utils/Response";
-import { generateToken } from '../utils/AuthUtils';
-import { encryptPassword, validatePassword } from '../utils/bcryptUtils';
+import {generateToken} from '../utils/AuthUtils';
+import {encryptPassword, validatePassword} from '../utils/bcryptUtils';
 import UserDao from "../dao/User.dao";
 import {TypesUser} from "../Enums/typesUser";
 
 export default class UsersAuthService {
-    public static create = async (name: string, email: string, password: string, type: TypesUser) => {
+    public static create = async (name: string, email: string, password: string, type: TypesUser = TypesUser.USER) => {
         const hashedPassword = await encryptPassword(password);
         try {
             const result = await UserDao.create(name, email, hashedPassword, type);

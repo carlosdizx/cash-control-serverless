@@ -4,7 +4,7 @@ import {TypesUser} from "../Enums/typesUser";
 
 export default class UserDao {
 
-    public static create = async (name: string, email: string, password: string, type: TypesUser = TypesUser.USER) => {
+    public static create = async (name: string, email: string, password: string, type: TypesUser) => {
         const datasource = await getConnect();
         const repository = datasource.getRepository(User);
         const user = repository.create({ name, email, password, type });
